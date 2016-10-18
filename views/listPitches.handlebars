@@ -1,9 +1,18 @@
 <div>
-	{{# each items }}
-		<p>Pitch: {{this.pitch}}</p>
-		<p>Upvotes: {{this.upvotes}}
-		Downvotes: {{this.downvotes}}</p>
-		{{{link "Upvote" this._id "up"}}}
+	<table border="0" id="pitchTable">
+		<tr>
+			<th>Pitch:</th>
+			<th>Upvotes:</th>
+			<th>Downvotes</th>
+		</tr>
+		{{# each items }}
+		<tr class="pitchTableRow">	
+			<td> {{this.pitch}}</td>
+			<td>{{this.upvotes}}</td>
+			<td>{{this.downvotes}}</td>
+			<td>{{{link "Upvote" this._id "up"}}}</td>
+		</tr>
 	{{/each}}
+	</table>
 </div>
 <a href="/">index</a>
