@@ -12,8 +12,8 @@ router.get('/', function(req,res){
 router.post('/insert-pitch', function(req,res){
        	item = {
 		pitch: req.body.pitch,
-		upvotes: parseInt(req.body.upvote),
-		downvotes: parseInt(req.body.downvote)
+		upvotes: parseInt(0),
+		downvotes: parseInt(0)
 	};
 
 	//Connect to db and instert item
