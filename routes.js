@@ -64,7 +64,10 @@ router.get('/listPitches', function(req,res){
 	//Connect to db and list all items
 	mongo.connect(url, function(err,db){
 		assert.equal(null,err);
-		db.collection('pitches').find().sort({upvotes: -1 }).toArray(function(err,docs){
+		db.collection('pitches').aggregate(
+			[	
+				{ $project: {"pitch":1,"upvotes":1,"downvotes":1, "votesTotal": { $sum: ["$upvotes","$downvotes"] }} }
+			]).sort({votesTotal: -1 }).toArray(function(err,docs){
 			assert.equal(null,err);
 			res.render('listPitches', {items: docs});
 			db.close();

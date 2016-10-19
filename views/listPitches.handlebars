@@ -1,15 +1,17 @@
 <div>
 	<table border="0" id="pitchTable">
 		<tr>
-			<th>Pitch:</th>
-			<th>Upvotes:</th>
+			<th>Pitch</th>
+			<th>Upvotes</th>
 			<th>Downvotes</th>
+			<th>Total Votes</th>
 		</tr>
 		{{# each items }}
 		<tr class="pitchTableRow">	
 			<td> {{this.pitch}}</td>
 			<td>{{this.upvotes}}</td>
 			<td>{{this.downvotes}}</td>
+			<td>{{this.votesTotal}}</td>
 			<td>{{{link "Upvote" this._id "up"}}}</td>
 			<td>{{{link "Downvote" this._id "down"}}}</td>
 		</tr>
