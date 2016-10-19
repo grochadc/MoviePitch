@@ -13,6 +13,7 @@ var hbs = exphbs.create({
 	helpers:{
 		link: function(text,id,vote){
 			var string = "<a href='/voting?id="+ id +"&vote="+ vote + "'>"+ text +"</a>";
+			return string;
 		}
 	}
 });
