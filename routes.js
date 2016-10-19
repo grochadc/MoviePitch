@@ -32,17 +32,32 @@ router.post('/insert-pitch', function(req,res){
 router.get('/voting', function(req,res){
 	var id = req.query.id;
 	var vote = req.query.vote;
-	mongo.connect(url, function(err,db){
-		assert.equal(null,err);
-		var o_id = new mongo.ObjectId(id);
-		db.collection('pitches').update(
-			{'_id':o_id},
-			{$inc: {upvotes:1} },
-			function(err,modRec){
-				console.log('Modified '+modRec+' record.');
-				res.redirect('/listPitches');
-			});
-	});
+	
+	if(vote=="up"){
+		mongo.connect(url, function(err,db){
+			assert.equal(null,err);
+			var o_id = new mongo.ObjectId(id);
+			db.collection('pitches').update(
+				{'_id':o_id},
+				{$inc: {upvotes:1} },
+				function(err,modRec){
+					console.log('Modified '+modRec+' record.');
+					res.redirect('/listPitches');
+				});
+		});
+	}else if(vote == "down"){
+		mongo.connect(url, function(err,db){
+			assert.equal(null,err);
+			var o_id = new mongo.ObjectId(id);
+			db.collection('pitches').update(
+				{'_id':o_id},
+				{$inc: {downvotes:-1} },
+				function(err,modRec){
+					console.log('Modified '+modRec+' record.');
+					res.redirect('/listPitches');
+				});
+		});
+	}
 });
 
 router.get('/listPitches', function(req,res){
