@@ -2,8 +2,9 @@ var express = require('express');
 var router = express.Router();
 var mongo = require('mongodb');
 var assert = require('assert');
+var mongoConfig = require('./config/database.js');
 
-var url = 'mongodb://localhost:27017/MoviePitch'; //Mongodb url
+var url = mongoConfig.url; //Mongodb url
 
 router.get('/', function(req,res){
 	res.render('index', {message:'Welcome to MoviePitch!', title:'Moviepitch - The movie pitching app'});
